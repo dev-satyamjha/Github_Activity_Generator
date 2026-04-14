@@ -44,14 +44,20 @@ For the generated commits to show up on your profile, GitHub needs permission to
 3. Run the script using python or uv: ```python Activity_Generator_Script.py``` 
 4. Go through each and every instructions carefully written in the script for a smoother experience.
 
+> **Note:** Please use the same username and user email that you have set in your account to make changes visible in your heatmap, if you will give different details then the heatmap won't get updated
 ---
 <br>
 
-<p align="center">
-  <img src="./Assets/Create_Activity.jpg" alt="Full" height="400" >
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="./Assets/Revert.png" alt="Partial" height="400">
-</p>
+<table align="center">
+  <tr>
+    <td align="center"><b>Create Activity (Full)</b></td>
+    <td align="center"><b>Revert Activity (Partial)</b></td>
+  </tr>
+  <tr>
+    <td><img src="Assets/Create_Activity.jpg" alt="Full Density" width="400"/></td>
+    <td><img src="Assets/Revert.png" alt="Partial Density" width="400" height = "350"/></td>
+  </tr>
+</table>
 
 <br>
 
@@ -91,6 +97,7 @@ To undo the generated activity:
 2. Select Option 2. Revert/Undo previous activity.
 
 The script will automatically delete the local folder and securely delete the remote repository using the GitHub CLI. Your heatmap will update shortly after.
+
 ---
 
-> **Note:** > This is a fun project intended for learning, do not use it to fool others, focus on real projects and learnings as green boxes doesn't guarantee placements but real projects do.
+> **Note:**  This is a fun project intended for learning, do not use it to fool others, focus on real projects and learnings as green boxes doesn't guarantee placements but real projects do.
