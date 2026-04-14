@@ -47,13 +47,17 @@ def check_dependencies():
         missing = True
     else:
         print("✅ GitHub CLI (gh) is installed.")
-        auth_check = run_cmd("gh auth status")
-        if auth_check.returncode != 0:
-            print("❌ GitHub CLI is installed, but you are not logged in")
-            print("Please run 'gh auth login' in your terminal (or export GH_TOKEN), and run this script again")
-            sys.exit(1)
+        
+        if os.environ.get("GH_TOKEN"):
+            print("✅ GH_TOKEN detected in environment. Using exported token for authentication.")
         else:
-            print("✅ GitHub CLI is authenticated.")
+            auth_check = run_cmd("gh auth status")
+            if auth_check.returncode != 0:
+                print("❌ GitHub CLI is installed, but you are not logged in")
+                print("Please run 'gh auth login' in your terminal (or export GH_TOKEN), and run this script again")
+                sys.exit(1)
+            else:
+                print("✅ GitHub CLI is authenticated.")
 
     if missing:
         print_install_instructions()
@@ -78,6 +82,11 @@ def show_welcome():
 # GitHub Repo deletion
 def revert_changes():
     print(f"\n--- Reverting '{REPO_NAME}' ---")
+
+    confirm = input("Are you sure you want to delete the local file and remote repo? This cannot be undone. (y/n): ").strip().lower()
+    if confirm != 'y':
+        print("Revert operation cancelled.")
+        return
 
     user_result = run_cmd("gh api user -q .login")
     if user_result.returncode == 0:
